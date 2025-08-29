@@ -52,6 +52,7 @@
     li {
       margin: 1.2rem 0;
     }
+    /* Video responsivo */
     .video-container {
       position: relative;
       padding-bottom: 56.25%;
@@ -59,7 +60,7 @@
       overflow: hidden;
       border-radius: 12px;
     }
-    .video-container iframe, .video-container #player {
+    .video-container iframe {
       position: absolute;
       top: 0;
       left: 0;
@@ -68,6 +69,7 @@
       border: 0;
       border-radius: 12px;
     }
+    /* Botón flotante de sonido */
     #soundBtn {
       position: fixed;
       bottom: 20px;
@@ -95,9 +97,14 @@
         🎯 <strong>Aimbot Filza — $10</strong><br/>
         <a href="https://wa.me/+50768888055" class="btn">Comprar</a>
         <br/><br/>
-        <!-- Video con API -->
+        <!-- Video YouTube autoplay + loop -->
         <div class="video-container">
-          <div id="player"></div>
+          <iframe id="demoVideo"
+                  src="https://www.youtube.com/embed/YjT35LR_Td8?autoplay=1&mute=1&loop=1&playlist=YjT35LR_Td8"
+                  title="Aimbot Filza Demo"
+                  allow="autoplay; encrypted-media"
+                  allowfullscreen>
+          </iframe>
         </div>
       </li>
       <li>
@@ -144,9 +151,22 @@
   <!-- Botón flotante de sonido -->
   <button id="soundBtn" onclick="toggleSonido()">🔊 Activar sonido</button>
 
-  <!-- Cargar API de YouTube -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-
   <script>
-    let player;
     let sonidoActivo = false;
+    function toggleSonido() {
+      const video = document.getElementById("demoVideo");
+      const btn = document.getElementById("soundBtn");
+
+      if (!sonidoActivo) {
+        video.src = "https://www.youtube.com/embed/YjT35LR_Td8?autoplay=1&mute=0&loop=1&playlist=YjT35LR_Td8";
+        btn.textContent = "🔇 Silenciar";
+        sonidoActivo = true;
+      } else {
+        video.src = "https://www.youtube.com/embed/YjT35LR_Td8?autoplay=1&mute=1&loop=1&playlist=YjT35LR_Td8";
+        btn.textContent = "🔊 Activar sonido";
+        sonidoActivo = false;
+      }
+    }
+  </script>
+</body>
+</html>
